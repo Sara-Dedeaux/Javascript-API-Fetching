@@ -127,5 +127,35 @@ function storeSpeciesInfo(specName, specClass, specDes, specLife){
 
 }
 
-//TARGET INPUT BOX
-let inputBox = 
+
+
+
+
+//NEW EXAMPLE POKEMON
+
+let pageImg= document.querySelector(".pokemon img")
+
+ async function fetchPokeData(){
+
+    let url = `https://pokeapi.co/api/v2/pokemon/bulbasaur`
+
+  await fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        console.log(data.id)
+        console.log(data.species.name)
+        console.log(data.moves[25].move.name)
+        console.log(data.stats[4].stat.name)
+        let imgURL= (data.sprites.front_default)
+        console.log(imgURL)
+        pageImg.src=imgURL;
+    })
+    .catch(error => {
+        console.log(error); 
+    })
+}
+
+fetchPokeData()
+
+
